@@ -1,1 +1,166 @@
-<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lecteur Vidéo</title><style>body{display:flex;justify-content:center;align-items:center;min-height:100vh;height:100vh;margin:0;background-color:#121212}.video-container{position:relative;width:80%;max-width:800px;border-radius:10px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,.2)}video{width:100%;height:auto;border-radius:10px}</style><script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script></head><body><div class="video-container"><video id="video" class="jw-video jw-reset" tabindex="-1" disableremoteplayback webkit-playsinline playsinline controls>Votre navigateur ne supporte pas la lecture de vidéos.</video></div><script>document.addEventListener("DOMContentLoaded",function(){var e=document.getElementById("video"),t="https://beers22147.beerscloud.com/files/aa/RqVfHVdGyMPcCStmrG9BEnO8T53WBeJtFFI.m3u8";if(Hls.isSupported()){var a=new Hls;a.loadSource(t),a.attachMedia(e),a.on(Hls.Events.MANIFEST_PARSED,function(){e.play()})}else e.canPlayType("application/vnd.apple.mpegurl")&&(e.src=t,e.addEventListener("loadedmetadata",function(){e.play()}))})</script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lecteur vidéo responsive avec synopsis, titre et image." />
+    <meta name="author" content="Votre Nom" />
+    <title>Demon City Oni Goroshi (2025) HD</title>
+
+    <!-- Feuille de style -->
+    <style>
+      /* Styles généraux */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Conteneur principal */
+      .content-container {
+        width: 90%;
+        max-width: 800px;
+        text-align: center;
+      }
+
+      /* Image */
+      .image-container img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      /* Titre */
+      .title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      /* Synopsis */
+      .synopsis {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      /* Lecteur vidéo */
+      .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* Ratio 16:9 */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .title {
+          font-size: 1.5rem;
+        }
+        
+        .synopsis {
+          font-size: 0.9rem;
+          margin-bottom: 15px;
+        }
+      }
+    </style>
+
+    <!-- HLS.js pour la lecture de vidéos HLS -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  
+  <body>
+    <main class="content-container">
+      
+      <!-- Image -->
+      <div class="image-container">
+        <img
+          src="https://media.themoviedb.org/t/p/original/j9eIbTY7Gi057SSMiejAykqDIQT.jpg"
+          alt="Affiche du film Demon City Oni Goroshi"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Titre -->
+      <h1 class="title">Demon City Oni Goroshi (2025) HD</h1>
+
+      <!-- Synopsis -->
+      <p class="synopsis">
+        SYNOPSIS : Accusé à tort du meurtre de sa famille et laissé pour mort,
+        un ancien tueur à gages est prêt à tout pour se venger des "démons"
+        masqués qui se sont emparés de sa ville.
+      </p>
+
+      <!-- Lecteur Vidéo -->
+      <div class="video-container">
+        <video
+          id="video"
+          controls
+          playsinline
+          webkit-playsinline
+          disableremoteplayback
+          poster="https://via.placeholder.com/800x450"
+          preload="metadata"
+        >
+          Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+      </div>
+      
+    </main>
+
+    <!-- Script JS -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("video");
+        
+        // URL du flux vidéo HLS
+        const videoSource =
+          "https://beers22147.beerscloud.com/files/aa/RqVfHVdGyMPcCStmrG9BEnO8T53WBeJtFFI.m3u8";
+
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(videoSource);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            console.log("Vidéo prête à être jouée !");
+          });
+          
+          hls.on(Hls.Events.ERROR, function (event, data) {
+            console.error("Erreur HLS :", data);
+          });
+          
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+          video.src = videoSource;
+
+          video.addEventListener("loadedmetadata", function () {
+            console.log("Vidéo chargée !");
+          });
+
+          video.addEventListener("error", function () {
+            console.error("Erreur lors du chargement de la vidéo.");
+          });
+          
+        } else {
+          alert("Votre navigateur ne prend pas en charge ce type de vidéo.");
+          console.error("HLS non supporté sur ce navigateur.");
+        }
+      });
+    </script>
+    
+  </body>
+</html>
